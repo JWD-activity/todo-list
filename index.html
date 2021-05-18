@@ -18,20 +18,26 @@
   </head>
   <body>
     <!-- Heading starts----------->
-    <div class="container">
-      <div class="row pt-5 text-center text-uppercase">
-        <h3 class="mb-0">Task Planner</h3>
+
+      <div class="header-container text-uppercase">
+        <div class="invisible-container">
+        
+        </div>
+      
+        
+        <div class="header-title">
+        <h3 class="">Task Planner</h3>
       </div>
-      <div class="row d-flex justify-content-end">
-        <div class="col-2 d-flex align-items-center">
-          <div class="row d-inline-flex">
+    
+     
+          <div class="add-item-trigger">
             <!-- Button trigger modal -->
               <svg
               data-toggle="modal" 
               data-target="#exampleModal"
                 xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
+                width="25"
+                height="25"
                 fill="currentColor"
                 class="bi bi-plus-circle-fill"
                 viewBox="0 0 16 16"
@@ -40,12 +46,12 @@
                 d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"
               />
             </svg>
-          </div>
-          <div class="row">
-            <h6 class="mb-1 d-inline-flex">Add Item</h6>
+            <h6  data-toggle="modal" 
+            data-target="#exampleModal">Add Item</h6>
           </div>
         </div>
-    </div>
+     
+
       <!-- Heading ends-------------->
       <!-- Modal stars-------------->
       <!-- Modal -->
@@ -107,7 +113,7 @@
       <!-- Modal ends--------------->
 
       <!-- Main starts--------------->
-      <div class="row d-flex pt-3">
+      <div class="row d-flex pt-3 justify-content-center">
         <div class="col-auto mb-3">
           <div class="card h-100 mb-4 shadow-sm" style="width: 18rem">
             <div class="card-body d-flex flex-column">
