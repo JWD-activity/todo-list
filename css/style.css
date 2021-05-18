@@ -21,7 +21,7 @@ height: 100px;
 }
 
 .add-item-trigger{
-
+height: 100%;
     flex:1;
     display: flex;
     justify-content: center;
@@ -32,5 +32,11 @@ height: 100px;
 
 .add-item-trigger > svg {
     margin-right: 8px;
+}
+
+.close-btn {
+    position: absolute;
+    right: 0px;
+    padding-right: 1rem;
 }
 
