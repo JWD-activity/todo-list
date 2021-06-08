@@ -30,7 +30,16 @@
 .close-btn {
   position: absolute;
   right: 0px;
-  padding-right: 1rem;
+  padding-right: 1.5rem;
+}
+
+.modal-blur {
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.modal-header {
+  border: none;
 }
 
 /* Pagination */
