@@ -1,42 +1,65 @@
+/* Header - title, add item*/
 .header-container {
-    display:flex; 
-text-align: center;
-height: 100px;
+  display: flex;
+  text-align: center;
+  height: 90px;
 }
 
 .invisible-container {
-    flex: 1;          /* shorthand for: flex-grow: 1, flex-shrink: 1, flex-basis: 0 */
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  
-  }
-  
-
-.header-title{
-   /* // flex:1; */
-    display: flex;
-    justify-content: center;
-    align-items: center
+  flex: 1; /* shorthand for: flex-grow: 1, flex-shrink: 1, flex-basis: 0 */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.add-item-trigger{
-/* height: 100%;
+.header-title {
+  /* // flex:1; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-item-trigger {
+  /* height: 100%;
     //flex:1; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
- 
-}
-
-.add-item-trigger > svg {
-    margin-right: 8px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  cursor: pointer;
 }
 
 .close-btn {
-    position: absolute;
-    right: 0px;
-    padding-right: 1rem;
+  position: absolute;
+  right: 0px;
+  padding-right: 1rem;
 }
 
+/* Pagination */
+.pagination {
+  margin: 0;
+}
+
+/* Card */
+h5,
+p {
+  margin: 0;
+}
+
+.badge {
+  padding: 0.45em 0.65em;
+}
+
+/* Icons */
+.bi-plus-circle-fill {
+  font-size: 1.5rem;
+}
+
+.icon-btn {
+  padding: 0.5rem 0.65rem;
+  border-radius: 5px;
+  transition: all 0.4s;
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  background-color: #dee2e6;
+}
