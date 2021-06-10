@@ -16,6 +16,7 @@ const clearForm = () => {
   taskName.value =
     description.value =
     description.value =
+    assigned.value =
     date.value =
     status.value =
       "";
@@ -25,13 +26,6 @@ const clearForm = () => {
     errMsg4.textContent =
     errMsg5.textContent =
       "";
-};
-const newTask = () => {
-  console.log("newTask");
-};
-
-const checkInput = () => {
-  isValid(taskName);
 };
 
 const isValid = () => {
