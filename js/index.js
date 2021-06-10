@@ -1,15 +1,17 @@
 "use strict";
 const taskManager = new TaskManager();
-// taskManager.addTask('test', 'something', 'marc', 'may 25th', 'pending');
-// taskManager.addTask('test', 'something', 'marc', 'may 25th', 'pending');
+
 // console.log(taskManager.tasks);
-let taskHtml = createTaskHtml(
-  "test",
-  "something",
-  "marc",
-  "may 25th",
-  "pending"
-);
+// let taskHtml = createTaskHtml(
+//   "test",
+//   "something",
+//   "marc",
+//   "may 25th",
+//   "pending"
+// );
+
+
+taskManager.render();
 // Element seletors
 const closeForm = document.getElementById("closeForm");
 const submitForm = document.getElementById("submitForm");
@@ -21,6 +23,7 @@ const date = document.getElementById("date");
 const status = document.getElementById("status");
 const btnAdd = document.getElementById("addBtn");
 const errMsg = document.getElementById("errMsg");
+const testButton = document.getElementById("submitBtn");
 // Founctions
 const clearForm = () => {
   taskName.value =
@@ -47,6 +50,7 @@ const checkSelect = (input) => {
 // EventHandlers
 closeBtn.addEventListener("click", clearForm);
 formData.addEventListener("submit", function (e) {
+    e.preventDefault();
   // Get data from form
   const task = taskName.value;
   const desc = description.value;
@@ -66,12 +70,15 @@ formData.addEventListener("submit", function (e) {
     state.value !== 0
   ) {
     taskManager.addTask(task, desc, assigedTo, dueDate, state);
+console.log('hi')
+     taskManager.render();
     // clearForm();
     console.log(taskManager.tasks);
     console.log("submitted successfully");
   } else {
+      
   }
 
-  e.preventDefault();
+
 });
 

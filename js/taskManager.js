@@ -57,8 +57,10 @@ class TaskManager {
 
     render() {
         let tasksHtmlList = [];
-        for (let i=0; i<=this.tasks.length; i++) {
+        for (let i=0; i<this.tasks.length; i++) {
            let task = this.tasks[i];
+            // console.log(task)
+
           let date = new Date(task.dueDate);
         let formattedDate = date.toString();
         let taskHtml = createTaskHtml(task.name, task.description, task.assignedTo, formattedDate, task.status);
@@ -68,7 +70,7 @@ class TaskManager {
 
         let tasksHtml = tasksHtmlList.join('\n');
         document.getElementById('taskList').innerHTML = tasksHtml;
-      
+
         
     }
 
