@@ -23,7 +23,10 @@ const date = document.getElementById("date");
 const status = document.getElementById("status");
 const btnAdd = document.getElementById("addBtn");
 const errMsg = document.getElementById("errMsg");
-const testButton = document.getElementById("submitBtn");
+const submitBtn = document.getElementById("submitBtn");
+const addTaskBtn = document.getElementById("addTask")
+const Modal = document.getElementById('exampleModal')
+
 // Founctions
 const clearForm = () => {
   taskName.value =
@@ -40,7 +43,7 @@ const clearForm = () => {
       "";
 };
 const checkInput = (input) => {
-  if (!(input.length < 5)) return ``;
+  if (!(input.length <= 5)) return ``;
   else return `Please enter more than 5 characters.`;
 };
 const checkSelect = (input) => {
@@ -49,8 +52,13 @@ const checkSelect = (input) => {
 };
 // EventHandlers
 closeBtn.addEventListener("click", clearForm);
+// addTaskBtn.addEventListener('click', function(){
+//     submitBtn.setAttribute('data-dismiss', '');
+// })
 formData.addEventListener("submit", function (e) {
+    // https://stackoverflow.com/questions/35552813/call-function-with-bootstrap-submit-button
     e.preventDefault();
+
   // Get data from form
   const task = taskName.value;
   const desc = description.value;
@@ -69,16 +77,24 @@ formData.addEventListener("submit", function (e) {
     dueDate.length !== 0 &&
     state.value !== 0
   ) {
+ 
     taskManager.addTask(task, desc, assigedTo, dueDate, state);
-console.log('hi')
+    $("#exampleModal").modal().hide() // modal('hide') not working
+    // $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
      taskManager.render();
-    // clearForm();
-    console.log(taskManager.tasks);
-    console.log("submitted successfully");
-  } else {
-      
-  }
+     clearForm();
+
+     // console.log(taskManager.tasks);
+    // console.log("submitted successfully");
+    
+  } 
+
 
 
 });
+// function closeModal(){
+//     Modal.style.display = "none"
+// }
+// submitBtn.addEventListener('click', closeModal)
 
