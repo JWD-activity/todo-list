@@ -57,6 +57,18 @@ class TaskManager {
 
     render() {
         let tasksHtmlList = [];
+        for (let i=0; i<=this.tasks.length; i++) {
+           let task = this.tasks[i];
+          let date = new Date(task.dueDate);
+        let formattedDate = date.toString();
+        let taskHtml = createTaskHtml(task.name, task.description, task.assignedTo, formattedDate, task.status);
+
+        tasksHtmlList.push(taskHtml);
+        }
+
+        let tasksHtml = tasksHtmlList.join('\n');
+        document.getElementById('taskList').innerHTML = tasksHtml;
+      
         
     }
 
