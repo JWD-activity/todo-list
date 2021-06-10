@@ -72,3 +72,7 @@ p {
 .icon-btn:hover {
   background-color: #dee2e6;
 }
+
+.errMessage {
+  color: #dc3545;
+}
