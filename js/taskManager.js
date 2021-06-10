@@ -1,5 +1,5 @@
-const createTaskHtml = (name, description, assignedTo, dueDate, status)  => {
-    const html = `
+const createTaskHtml = (name, description, assignedTo, dueDate, status) => {
+  const html = `
     <div class="col-xl-4 col-md-6 col-sm-12">
     <div class="card shadow-sm p-2 mb-3">
       <div class="card-body">
@@ -7,7 +7,18 @@ const createTaskHtml = (name, description, assignedTo, dueDate, status)  => {
         <div class="row mb-3">
           <div class="card-title d-flex justify-content-between">
             <h5 class="d-inline">${name}</h5>
-            <span class="badge bg-danger pb-1">${status}</span>
+            <span class="badge pb-1 ${
+              status === 'todo'
+                ? 'bg-success'
+                : status === 'review'
+                ? 'bg-danger'
+                : status === 'in progress'
+                ? 'bg-warning text-dark'
+                : status === 'done'
+                ? ' bg-secondary'
+                : ''
+            }              
+            ">${status}</span>
           </div>
         </div>
         <!-- Assigned to -------------->
@@ -31,51 +42,48 @@ const createTaskHtml = (name, description, assignedTo, dueDate, status)  => {
       </div>
     </div>
   </div>
-    `
-    return html;
-}
-
+    `;
+  return html;
+};
 
 class TaskManager {
-    constructor(currentId = 0){
-        this.tasks = [];
-        this.currentId = currentId;
+  constructor(currentId = 0) {
+    this.tasks = [];
+    this.currentId = currentId;
+  }
+
+  addTask(name, description, assignedTo, dueDate, status) {
+    let id = this.currentId++;
+    this.tasks.push({
+      id,
+      name,
+      description,
+      assignedTo,
+      dueDate,
+      status,
+    });
+  }
+
+  render() {
+    let tasksHtmlList = [];
+    for (let i = 0; i < this.tasks.length; i++) {
+      let task = this.tasks[i];
+      // console.log(task)
+
+      let date = new Date(task.dueDate);
+      let formattedDate = date.toLocaleDateString();
+      let taskHtml = createTaskHtml(
+        task.name,
+        task.description,
+        task.assignedTo,
+        formattedDate,
+        task.status
+      );
+
+      tasksHtmlList.push(taskHtml);
     }
 
-
-    addTask(name, description, assignedTo, dueDate, status) {
-       let id =  this.currentId++;
-        this.tasks.push({
-            id,
-            name,
-            description,
-            assignedTo,
-            dueDate,
-            status
-        })
-    }
-
-    render() {
-        let tasksHtmlList = [];
-        for (let i=0; i<this.tasks.length; i++) {
-           let task = this.tasks[i];
-            // console.log(task)
-
-          let date = new Date(task.dueDate);
-        let formattedDate = date.toString();
-        let taskHtml = createTaskHtml(task.name, task.description, task.assignedTo, formattedDate, task.status);
-
-        tasksHtmlList.push(taskHtml);
-        
-        }
-
-        let tasksHtml = tasksHtmlList.join('\n');
-        document.getElementById('taskList').innerHTML = tasksHtml;
-
-        
-    }
-
-
+    let tasksHtml = tasksHtmlList.join('\n');
+    document.getElementById('taskList').innerHTML = tasksHtml;
+  }
 }
-
-
