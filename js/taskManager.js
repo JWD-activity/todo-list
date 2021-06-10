@@ -66,6 +66,7 @@ class TaskManager {
         let taskHtml = createTaskHtml(task.name, task.description, task.assignedTo, formattedDate, task.status);
 
         tasksHtmlList.push(taskHtml);
+        
         }
 
         let tasksHtml = tasksHtmlList.join('\n');
