@@ -1,3 +1,4 @@
+"use strict";
 const taskManager = new TaskManager();
 
 // taskManager.addTask('test', 'something', 'marc', 'may 25th', 'pending');
@@ -14,7 +15,6 @@ let taskHtml = createTaskHtml(
   "pending"
 );
 
-("use strict");
 // Element seletors
 const closeForm = document.getElementById("closeForm");
 const submitForm = document.getElementById("submitForm");
@@ -44,28 +44,44 @@ const clearForm = () => {
 };
 
 const checkInput = (input) => {
-  if (!(input.value.length < 5)) return ``;
+  if (!(input.length < 5)) return ``;
   else return `Please enter more than 5 characters.`;
 };
 
 const checkSelect = (input) => {
-  if (!(input.value.length === 0)) return ``;
+  if (!(input.length === 0)) return ``;
   else return `Please select.`;
 };
 
-const isValid = () => {
-  errMsg1.innerHTML = checkInput(taskName);
-  errMsg2.innerHTML = checkInput(description);
-  errMsg3.innerHTML = checkInput(assigned);
-  errMsg4.innerHTML = checkSelect(date);
-  errMsg5.innerHTML = checkSelect(status);
-};
-
 // EventHandlers
-closeForm.addEventListener("click", clearForm);
+closeBtn.addEventListener("click", clearForm);
 
-submitBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  isValid();
+formData.addEventListener("submit", function (e) {
+  // Get data from form
+  const task = taskName.value;
+  const desc = description.value;
+  const assigedTo = assigned.value;
+  const dueDate = date.value;
+  const state = status.value;
+
+  errMsg1.innerHTML = checkInput(task);
+  errMsg2.innerHTML = checkInput(desc);
+  errMsg3.innerHTML = checkInput(assigedTo);
+  errMsg4.innerHTML = checkSelect(dueDate);
+  errMsg5.innerHTML = checkSelect(state);
+
+  if (
+    task.length > 5 &&
+    desc.length > 5 &&
+    assigedTo.length > 5 &&
+    dueDate.length !== 0 &&
+    state.value !== 0
+  ) {
+    taskManager.addTask(task, desc, assigedTo, dueDate, state);
+    clearForm();
+    // console.log(taskManager.tasks);
+    console.log("submitted successfully");
+  } else {
+    e.preventDefault();
+  }
 });
-// formData.addEventListener("submit", isValid);
