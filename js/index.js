@@ -4,7 +4,9 @@ const taskManager = new TaskManager();
 
 // taskManager.addTask('test', 'something', 'marc', 'may 25th', 'pending');
 
+
 // console.log(taskManager.tasks);
+
 
 let taskHtml = createTaskHtml(
   "test",
@@ -65,6 +67,7 @@ const isValid = () => {
 closeForm.addEventListener("click", clearForm);
 
 submitBtn.addEventListener("click", (e) => {
+    
   e.preventDefault();
   isValid();
 });
