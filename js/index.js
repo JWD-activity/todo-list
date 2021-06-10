@@ -78,10 +78,10 @@ formData.addEventListener("submit", function (e) {
     state.value !== 0
   ) {
     taskManager.addTask(task, desc, assigedTo, dueDate, state);
-    clearForm();
-    // console.log(taskManager.tasks);
+    // clearForm();
+    console.log(taskManager.tasks);
     console.log("submitted successfully");
   } else {
-    e.preventDefault();
   }
+  e.preventDefault();
 });
