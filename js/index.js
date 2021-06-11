@@ -54,6 +54,8 @@ closeBtn.addEventListener('click', clearForm);
 // addTaskBtn.addEventListener('click', function(){
 //     submitBtn.setAttribute('data-dismiss', '');
 // })
+$('#exampleModal').on('hidden.bs.modal', clearForm);
+
 formData.addEventListener('submit', function (e) {
   // https://stackoverflow.com/questions/35552813/call-function-with-bootstrap-submit-button
   e.preventDefault();
