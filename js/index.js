@@ -42,7 +42,7 @@ const clearForm = () => {
       '';
 };
 const checkInput = input => {
-  if (!(input.trim().length <= 5)) return ``;
+  if (!(input.length <= 5)) return ``;
   else return `Please enter more than 5 characters.`;
 };
 const checkSelect = input => {
@@ -61,9 +61,9 @@ formData.addEventListener('submit', function (e) {
   e.preventDefault();
 
   // Get data from form
-  const task = taskName.value;
-  const desc = description.value;
-  const assigedTo = assigned.value;
+  const task = taskName.value.trim();
+  const desc = description.value.trim();
+  const assigedTo = assigned.value.trim();
   const dueDate = date.value;
   const state = status.value;
   errMsg1.innerHTML = checkInput(task);
