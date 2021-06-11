@@ -42,7 +42,7 @@ const clearForm = () => {
       '';
 };
 const checkInput = input => {
-  if (!(input.length <= 5)) return ``;
+  if (!(input.trim().length <= 5)) return ``;
   else return `Please enter more than 5 characters.`;
 };
 const checkSelect = input => {
@@ -54,6 +54,8 @@ closeBtn.addEventListener('click', clearForm);
 // addTaskBtn.addEventListener('click', function(){
 //     submitBtn.setAttribute('data-dismiss', '');
 // })
+$('#exampleModal').on('hidden.bs.modal', clearForm);
+
 formData.addEventListener('submit', function (e) {
   // https://stackoverflow.com/questions/35552813/call-function-with-bootstrap-submit-button
   e.preventDefault();
@@ -82,7 +84,7 @@ formData.addEventListener('submit', function (e) {
     // $('#exampleModal').modal().hide()
     // modal('hide') not working
     // $('body').removeClass('modal-open');
-    $(".btn-closemodal").trigger("click");
+    $('.btn-closemodal').trigger('click');
     // $('.modal-backdrop').remove();
     taskManager.render();
     clearForm();
