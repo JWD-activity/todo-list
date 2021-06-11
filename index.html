@@ -29,10 +29,10 @@
         <div class="col-12 col-md-4 offset-md-4 header-title">
           <h3 class="">Task Planner</h3>
         </div>
-        <div id="addTask" class="col-12 col-md-4 add-item-trigger">
+        <div id="addTask"  data-toggle="modal"
+        data-target="#exampleModal" class="col-12 col-md-4 add-item-trigger">
           <a
-            data-toggle="modal"
-            data-target="#exampleModal"
+           
             href="#"
             class="
               text-uppercase text-decoration-none text-dark
@@ -58,6 +58,7 @@
         role="dialog"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
+        data-backdrop="static"
       >
         <div class="modal-dialog" role="document">
           <div class="modal-content">
