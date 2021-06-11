@@ -81,9 +81,11 @@ formData.addEventListener('submit', function (e) {
     state.length !== 0
   ) {
     taskManager.addTask(task, desc, assigedTo, dueDate, state);
-    $('#exampleModal').modal().hide(); // modal('hide') not working
+    // $('#exampleModal').modal().hide()
+    // modal('hide') not working
     // $('body').removeClass('modal-open');
-    $('.modal-backdrop').remove();
+    $(".btn-closemodal").trigger("click");
+    // $('.modal-backdrop').remove();
     taskManager.render();
     clearForm();
 
