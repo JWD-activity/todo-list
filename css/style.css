@@ -53,13 +53,18 @@ p {
   margin: 0;
 }
 
+.btn-done {
+  font-size: 0.7rem;
+}
+
 /* Icons */
 .bi-plus-circle-fill {
   font-size: 1.5rem;
 }
 
 .icon-btn {
-  padding: 0.5rem 0.65rem;
+  padding: 0.3rem 0.65rem;
+  margin-left: 0.3rem;
   border-radius: 5px;
   transition: all 0.4s;
   cursor: pointer;

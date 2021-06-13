@@ -30,11 +30,12 @@ const createTaskHtml = (name, description, assignedTo, dueDate, status) => {
           </p>
         </div>
         <!-- Date, edit and delete buttons ---->
-        <div class="row">
+        <div class="row align-items-center">
           <div class="col text-primary">${dueDate}</div>
-          <div class="col d-flex justify-content-end">
-            <span><i class="bi bi-pencil icon-btn"></i></span>
-            <span><i class="bi bi-x-lg icon-btn"></i></span>
+          <div class="col d-flex justify-content-end">           
+            <span class="d-flex align-items-center"><button type="button" class="btn btn-outline-secondary btn-sm btn-done">Done</button></span>            
+            <span class="d-flex justify-content-center "><i class="bi bi-pencil icon-btn"></i></span>
+            <span class="d-flex justify-content-center "><i class="bi bi-x-lg icon-btn"></i></span>            
           </div>
         </div>
       </div>
