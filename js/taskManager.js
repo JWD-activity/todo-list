@@ -4,22 +4,20 @@ const createTaskHtml = (name, description, assignedTo, dueDate, status) => {
     <div class="card shadow-sm p-2 mb-3">
       <div class="card-body">
         <!-- Task name --------------->
-        <div class="row mb-3">
-          <div class="card-title d-flex justify-content-between">
-            <h5 class="d-inline">${name}</h5>
-            <span class="badge pb-1 ${
-              status === 'todo'
-                ? 'bg-success'
-                : status === 'review'
-                ? 'bg-danger'
-                : status === 'in progress'
-                ? 'bg-warning text-dark'
-                : status === 'done'
-                ? ' bg-secondary'
-                : ''
-            }              
-            ">${status}</span>
-          </div>
+        <div class="row mb-3 align-items-start justify-content-between">          
+          <h5 class="card-title col-8">${name}</h5>
+          <span class="col-3 badge pb-1 text-capitalize me-3 ${
+            status === 'todo'
+              ? 'bg-success'
+              : status === 'review'
+              ? 'bg-danger'
+              : status === 'in progress'
+              ? 'bg-warning text-dark'
+              : status === 'done'
+              ? ' bg-secondary'
+              : ''
+          }              
+          ">${status}</span>          
         </div>
         <!-- Assigned to -------------->
         <div class="row mb-3">
