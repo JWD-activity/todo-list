@@ -56,7 +56,6 @@ closeBtn.addEventListener('click', clearForm);
 // addTaskBtn.addEventListener('click', function(){
 //     submitBtn.setAttribute('data-dismiss', '');
 // })
-$('#exampleModal').on('hidden.bs.modal', clearForm);
 
 formData.addEventListener('submit', function (e) {
   // https://stackoverflow.com/questions/35552813/call-function-with-bootstrap-submit-button
@@ -96,7 +95,16 @@ formData.addEventListener('submit', function (e) {
     // console.log("submitted successfully");
   }
 });
-// function closeModal(){
-//     Modal.style.display = "none"
-// }
-// submitBtn.addEventListener('click', closeModal)
+
+taskList.addEventListener('click', event => {
+  if (event.target.classList.contains('done-button')) {
+    const parentTask = event.target.closest('.col-xl-4');
+    let taskId = Number(parentTask.dataset.taskId);
+    // console.log(parentTask);
+    // console.log(taskId);
+    const task = taskManager.getTaskById(taskId);
+    task.status = 'done';
+    console.log(task.status);
+    taskManager.render();
+  }
+});
