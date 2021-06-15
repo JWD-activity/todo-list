@@ -53,13 +53,17 @@ p {
   margin: 0;
 }
 
-.btn-done {
+.done-button {
   font-size: 0.7rem;
 }
 
 /* Icons */
 .bi-plus-circle-fill {
   font-size: 1.5rem;
+}
+
+.bi-x-lg {
+  font-size: 0.8rem;
 }
 
 .icon-btn {
