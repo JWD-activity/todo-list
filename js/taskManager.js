@@ -99,7 +99,20 @@ class TaskManager {
 
      // Store the string variable in local storage under key 'currentId'
      localStorage.setItem('currentId', currentId);
+  }
 
+  load() {
+    // check if any tasks are saved in localStorage 
+    let tasksJson = localStorage.getItem('tasks');
+
+    // Convert the tasksJson string to an array and store it in this.tasks
+    this.tasks = JSON.parse(tasksJson);
+
+    // check if the currentId is saved in localStorage
+    let currentId = localStorage.getItem('currentId');
+
+    //Convert the currentId to a number before storing in this.currentId
+    this.currentId = parseInt(currentId);
 
   }
 }

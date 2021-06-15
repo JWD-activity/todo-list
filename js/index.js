@@ -1,5 +1,7 @@
 'use strict';
 const taskManager = new TaskManager();
+taskManager.load();
+taskManager.render();
 
 // console.log(taskManager.tasks);
 // let taskHtml = createTaskHtml(
@@ -10,7 +12,7 @@ const taskManager = new TaskManager();
 //   "pending"
 // );
 
-taskManager.render();
+
 // Element seletors
 const closeForm = document.getElementById('closeForm');
 const submitForm = document.getElementById('submitForm');
