@@ -43,13 +43,11 @@ const createTaskHtml = (id, name, description, assignedTo, dueDate, status) => {
     `;
   return html;
 };
-
 class TaskManager {
   constructor(currentId = 0) {
     this.tasks = [];
     this.currentId = currentId;
   }
-
   addTask(name, description, assignedTo, dueDate, status) {
     let id = this.currentId++;
     this.tasks.push({
@@ -61,13 +59,11 @@ class TaskManager {
       status,
     });
   }
-
   render() {
     let tasksHtmlList = [];
     for (let i = 0; i < this.tasks.length; i++) {
       let task = this.tasks[i];
       // console.log(task)
-
       let date = new Date(task.dueDate);
       let formattedDate = date.toLocaleDateString();
       let taskHtml = createTaskHtml(
@@ -78,45 +74,31 @@ class TaskManager {
         formattedDate,
         task.status
       );
-
-
       tasksHtmlList.push(taskHtml);
     }
-
-    
     let tasksHtml = tasksHtmlList.join('\n');
     document.getElementById('taskList').innerHTML = tasksHtml;
   }
-
   save() {
     // Create a string for all tasks
     let tasksJson = JSON.stringify(this.tasks);
-
     // Store the string variable in local storage under key 'tasks'
     localStorage.setItem('tasks', tasksJson);
-
     // convert currentId to stirng
     let currentId = JSON.stringify(this.currentId);
-
     // Store the string variable in local storage under key 'currentId'
     localStorage.setItem('currentId', currentId);
   }
-
   load() {
-    // check if any tasks are saved in localStorage 
-
+    // check if any tasks are saved in localStorage
     let tasksJson = localStorage.getItem('tasks');
-
     // Convert the tasksJson string to an array and store it in this.tasks
     this.tasks = JSON.parse(tasksJson);
-
     // check if the currentId is saved in localStorage
     let currentId = localStorage.getItem('currentId');
-
     //Convert the currentId to a number before storing in this.currentId
     this.currentId = parseInt(currentId);
   }
-
   getTaskById(taskId) {
     let foundTask;
     this.tasks.find(task => {
@@ -126,10 +108,13 @@ class TaskManager {
       }
     });
     return foundTask;
-
   }
+
 
   // deleteTask(taskId) {
   //   let newTasks = [];
   // }
 }
+
+
+

@@ -1,7 +1,6 @@
 'use strict';
 const taskManager = new TaskManager();
 taskManager.load();
-taskManager.render();
 
 // console.log(taskManager.tasks);
 // let taskHtml = createTaskHtml(
@@ -11,8 +10,7 @@ taskManager.render();
 //   "may 25th",
 //   "pending"
 // );
-
-
+taskManager.render();
 // Element seletors
 const closeForm = document.getElementById('closeForm');
 const submitForm = document.getElementById('submitForm');
@@ -27,7 +25,6 @@ const errMsg = document.getElementById('errMsg');
 const submitBtn = document.getElementById('submitBtn');
 const addTaskBtn = document.getElementById('addTask');
 const Modal = document.getElementById('exampleModal');
-
 // Founctions
 const clearForm = () => {
   taskName.value =
@@ -56,11 +53,9 @@ closeBtn.addEventListener('click', clearForm);
 // addTaskBtn.addEventListener('click', function(){
 //     submitBtn.setAttribute('data-dismiss', '');
 // })
-
 formData.addEventListener('submit', function (e) {
   // https://stackoverflow.com/questions/35552813/call-function-with-bootstrap-submit-button
   e.preventDefault();
-
   // Get data from form
   const task = taskName.value.trim();
   const desc = description.value.trim();
@@ -73,7 +68,6 @@ formData.addEventListener('submit', function (e) {
   errMsg4.innerHTML = checkSelect(dueDate);
   errMsg5.innerHTML = checkSelect(state);
   console.log(state);
-
   if (
     task.length > 5 &&
     desc.length > 5 &&
@@ -82,7 +76,7 @@ formData.addEventListener('submit', function (e) {
     state.length !== 0
   ) {
     taskManager.addTask(task, desc, assigedTo, dueDate, state);
-    taskManager.save();
+    taskManager.save()
     // $('#exampleModal').modal().hide()
     // modal('hide') not working
     // $('body').removeClass('modal-open');
@@ -90,12 +84,10 @@ formData.addEventListener('submit', function (e) {
     // $('.modal-backdrop').remove();
     taskManager.render();
     clearForm();
-
     // console.log(taskManager.tasks);
     // console.log("submitted successfully");
   }
 });
-
 taskList.addEventListener('click', event => {
   if (event.target.classList.contains('done-button')) {
     const parentTask = event.target.closest('.col-xl-4');
