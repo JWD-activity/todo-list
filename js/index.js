@@ -81,6 +81,7 @@ formData.addEventListener('submit', function (e) {
     state.length !== 0
   ) {
     taskManager.addTask(task, desc, assigedTo, dueDate, state);
+    taskManager.save();
     // $('#exampleModal').modal().hide()
     // modal('hide') not working
     // $('body').removeClass('modal-open');

@@ -78,10 +78,28 @@ class TaskManager {
         task.status
       );
 
+
       tasksHtmlList.push(taskHtml);
     }
 
+    
     let tasksHtml = tasksHtmlList.join('\n');
     document.getElementById('taskList').innerHTML = tasksHtml;
+  }
+
+  save() {
+    // Create a string for all tasks
+    let tasksJson = JSON.stringify(this.tasks);
+
+    // Store the string variable in local storage under key 'tasks'
+    localStorage.setItem('tasks', tasksJson);
+
+    // convert currentId to stirng
+    let currentId = JSON.stringify(this.currentId);
+
+     // Store the string variable in local storage under key 'currentId'
+     localStorage.setItem('currentId', currentId);
+
+
   }
 }
