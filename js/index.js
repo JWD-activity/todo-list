@@ -92,12 +92,24 @@ taskList.addEventListener('click', event => {
   if (event.target.classList.contains('done-button')) {
     const parentTask = event.target.closest('.col-xl-4');
     let taskId = Number(parentTask.dataset.taskId);
-    // console.log(parentTask);
-    // console.log(taskId);
+    console.log(parentTask);
+    console.log(taskId);
     const task = taskManager.getTaskById(taskId);
     task.status = 'done';
     taskManager.save()
-    console.log(task.status);
+    // console.log(task.status);
     taskManager.render();
   }
+
+  if(event.target.classList.contains('delete-button')){
+    const parentTask = event.target.closest('.col-xl-4');
+    let taskId = Number(parentTask.dataset.taskId);
+    // console.log(parentTask);
+    // console.log(taskId);
+    taskManager.deleteTask(taskId)
+    taskManager.save()
+    taskManager.render();
+  }
+
+
 });
