@@ -1,6 +1,6 @@
-const createTaskHtml = (name, description, assignedTo, dueDate, status) => {
+const createTaskHtml = (id, name, description, assignedTo, dueDate, status) => {
   const html = `
-    <div class="col-xl-4 col-md-6 col-sm-12">
+    <div class="col-xl-4 col-md-6 col-sm-12" data-task-id="${id}">
     <div class="card shadow-sm p-2 mb-3">
       <div class="card-body">
         <!-- Task name --------------->
@@ -71,6 +71,7 @@ class TaskManager {
       let date = new Date(task.dueDate);
       let formattedDate = date.toLocaleDateString();
       let taskHtml = createTaskHtml(
+        task.id,
         task.name,
         task.description,
         task.assignedTo,
@@ -97,12 +98,13 @@ class TaskManager {
     // convert currentId to stirng
     let currentId = JSON.stringify(this.currentId);
 
-     // Store the string variable in local storage under key 'currentId'
-     localStorage.setItem('currentId', currentId);
+    // Store the string variable in local storage under key 'currentId'
+    localStorage.setItem('currentId', currentId);
   }
 
   load() {
     // check if any tasks are saved in localStorage 
+
     let tasksJson = localStorage.getItem('tasks');
 
     // Convert the tasksJson string to an array and store it in this.tasks
@@ -113,6 +115,17 @@ class TaskManager {
 
     //Convert the currentId to a number before storing in this.currentId
     this.currentId = parseInt(currentId);
+  }
+
+  getTaskById(taskId) {
+    let foundTask;
+    this.tasks.find(task => {
+      if (task.id === taskId) {
+        foundTask = task;
+        // console.log(foundTask);
+      }
+    });
+    return foundTask;
 
   }
 
