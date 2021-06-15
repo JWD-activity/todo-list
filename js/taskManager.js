@@ -1,6 +1,6 @@
-const createTaskHtml = (name, description, assignedTo, dueDate, status) => {
+const createTaskHtml = (id, name, description, assignedTo, dueDate, status) => {
   const html = `
-    <div class="col-xl-4 col-md-6 col-sm-12">
+    <div class="col-xl-4 col-md-6 col-sm-12" data-task-id="${id}">
     <div class="card shadow-sm p-2 mb-3">
       <div class="card-body">
         <!-- Task name --------------->
@@ -71,6 +71,7 @@ class TaskManager {
       let date = new Date(task.dueDate);
       let formattedDate = date.toLocaleDateString();
       let taskHtml = createTaskHtml(
+        task.id,
         task.name,
         task.description,
         task.assignedTo,
@@ -83,5 +84,16 @@ class TaskManager {
 
     let tasksHtml = tasksHtmlList.join('\n');
     document.getElementById('taskList').innerHTML = tasksHtml;
+  }
+
+  getTaskById(taskId) {
+    let foundTask;
+    this.tasks.find(task => {
+      if (task.id === taskId) {
+        foundTask = task;
+        // console.log(foundTask);
+      }
+    });
+    return foundTask;
   }
 }
