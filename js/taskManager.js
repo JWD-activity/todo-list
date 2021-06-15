@@ -86,6 +86,34 @@ class TaskManager {
     document.getElementById('taskList').innerHTML = tasksHtml;
   }
 
+  save() {
+    // Create a string for all tasks
+    let tasksJson = JSON.stringify(this.tasks);
+
+    // Store the string variable in local storage under key 'tasks'
+    localStorage.setItem('tasks', tasksJson);
+
+    // convert currentId to stirng
+    let currentId = JSON.stringify(this.currentId);
+
+    // Store the string variable in local storage under key 'currentId'
+    localStorage.setItem('currentId', currentId);
+  }
+
+  load() {
+    // check if any tasks are saved in localStorage
+    let tasksJson = localStorage.getItem('tasks');
+
+    // Convert the tasksJson string to an array and store it in this.tasks
+    this.tasks = JSON.parse(tasksJson);
+
+    // check if the currentId is saved in localStorage
+    let currentId = localStorage.getItem('currentId');
+
+    //Convert the currentId to a number before storing in this.currentId
+    this.currentId = parseInt(currentId);
+  }
+
   getTaskById(taskId) {
     let foundTask;
     this.tasks.find(task => {
