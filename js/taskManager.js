@@ -119,9 +119,16 @@ class TaskManager {
   }
 
 
-  // deleteTask(taskId) {
-  //   let newTasks = [];
-  // }
+  deleteTask(taskId) {
+    let newTasks = [];
+    this.tasks.forEach(task => {
+      if (task.id !== taskId) {
+        newTasks.push(task)
+      }
+    })
+
+    this.tasks = newTasks;
+  }
 }
 
 
