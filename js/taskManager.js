@@ -34,7 +34,7 @@ const createTaskHtml = (name, description, assignedTo, dueDate, status) => {
           <div class="col text-primary">${dueDate}</div>
           <div class="col d-flex justify-content-end">           
             <span class="d-flex align-items-center"><button type="button" class="btn btn-outline-secondary btn-sm done-button">Done</button></span>
-            <span class="d-flex justify-content-center "><i class="bi bi-x-lg icon-btn"></i></span>            
+            <span class="d-flex justify-content-center delete-button"><i class="bi bi-x-lg icon-btn"></i></span>            
           </div>
         </div>
       </div>
@@ -115,4 +115,8 @@ class TaskManager {
     this.currentId = parseInt(currentId);
 
   }
+
+  // deleteTask(taskId) {
+  //   let newTasks = [];
+  // }
 }
