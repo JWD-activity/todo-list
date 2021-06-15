@@ -79,9 +79,11 @@ class TaskManager {
         task.status
       );
 
+
       tasksHtmlList.push(taskHtml);
     }
 
+    
     let tasksHtml = tasksHtmlList.join('\n');
     document.getElementById('taskList').innerHTML = tasksHtml;
   }
@@ -101,7 +103,8 @@ class TaskManager {
   }
 
   load() {
-    // check if any tasks are saved in localStorage
+    // check if any tasks are saved in localStorage 
+
     let tasksJson = localStorage.getItem('tasks');
 
     // Convert the tasksJson string to an array and store it in this.tasks
@@ -123,5 +126,6 @@ class TaskManager {
       }
     });
     return foundTask;
+
   }
 }
