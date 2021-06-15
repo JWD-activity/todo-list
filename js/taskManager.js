@@ -34,7 +34,7 @@ const createTaskHtml = (id, name, description, assignedTo, dueDate, status) => {
           <div class="col text-primary">${dueDate}</div>
           <div class="col d-flex justify-content-end">           
             <span class="d-flex align-items-center"><button type="button" class="btn btn-outline-secondary btn-sm done-button">Done</button></span>
-            <span class="d-flex justify-content-center "><i class="bi bi-x-lg icon-btn"></i></span>            
+            <span class="d-flex justify-content-center delete-button"><i class="bi bi-x-lg icon-btn"></i></span>            
           </div>
         </div>
       </div>
@@ -91,13 +91,21 @@ class TaskManager {
   }
   load() {
     // check if any tasks are saved in localStorage
-    let tasksJson = localStorage.getItem('tasks');
-    // Convert the tasksJson string to an array and store it in this.tasks
-    this.tasks = JSON.parse(tasksJson);
+    if (localStorage.getItem('tasks') !== null){ 
+      let tasksJson = localStorage.getItem('tasks');
+      // Convert the tasksJson string to an array and store it in this.tasks
+      this.tasks = JSON.parse(tasksJson);
+
+    }
+   
     // check if the currentId is saved in localStorage
+    if (localStorage.getItem('currentId') !== null) {
     let currentId = localStorage.getItem('currentId');
     //Convert the currentId to a number before storing in this.currentId
     this.currentId = parseInt(currentId);
+
+    }
+   
   }
   getTaskById(taskId) {
     let foundTask;
@@ -109,4 +117,12 @@ class TaskManager {
     });
     return foundTask;
   }
+
+
+  // deleteTask(taskId) {
+  //   let newTasks = [];
+  // }
 }
+
+
+
