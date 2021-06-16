@@ -35,40 +35,70 @@ const clearForm = () => {
     date.value =
     status.value =
       '';
+
   errMsg1.textContent =
     errMsg2.textContent =
     errMsg3.textContent =
     errMsg4.textContent =
     errMsg5.textContent =
       '';
+
+  [...formElements].forEach(el => {
+    el.classList.remove('is-valid');
+    el.classList.remove('is-invalid');
+  });
 };
 
 // Check text input
 const checkText = input => {
-  if (!(input.length <= 5)) return ``;
-  else return `Please enter more than 5 characters.`;
+  if (!(input.value.trim().length <= 5)) {
+    input.classList.add('is-valid');
+    input.classList.remove('is-invalid');
+    return ``;
+  } else {
+    input.classList.remove('is-valid');
+    input.classList.add('is-invalid');
+    return `Please enter more than 5 characters.`;
+  }
 };
 
 // Check status
 const checkStatus = input => {
-  if (!(input.length === 0)) return ``;
-  else return `Please select status.`;
+  if (!(input.value.length === 0)) {
+    input.classList.add('is-valid');
+    input.classList.remove('is-invalid');
+    return ``;
+  } else {
+    input.classList.remove('is-valid');
+    input.classList.add('is-invalid');
+    return `Please select status.`;
+  }
 };
 
 // Check date
 const checkDate = input => {
   let today = new Date();
-  let dateSelected = new Date(input);
+  let dateSelected = new Date(input.value);
   // set time 00:00:00
   dateSelected.setHours(0, 0, 0, 0);
   today.setHours(0, 0, 0, 0);
   // console.log(`selected date:${dateSelected}`);
   // console.log(`now:${today}`);
-  if (!(input.length === 0)) {
+  if (input.value.length !== 0) {
     if (today > dateSelected) {
+      input.classList.remove('is-valid');
+      input.classList.add('is-invalid');
       return `invalid date, select again.`;
-    } else return ``;
-  } else return `Please select due date.`;
+    } else {
+      input.classList.add('is-valid');
+      input.classList.remove('is-invalid');
+      return ``;
+    }
+  } else {
+    input.classList.remove('is-valid');
+    input.classList.add('is-invalid');
+    return `Please select due date.`;
+  }
 };
 
 // Check valid text
@@ -86,17 +116,11 @@ const validDate = input => {
 
 // Check onchange and render error message
 const checkOnChange = () => {
-  const task = taskName.value.trim();
-  const desc = description.value.trim();
-  const assigedTo = assigned.value.trim();
-  const dueDate = date.value;
-  const state = status.value;
-
-  errMsg1.innerHTML = checkText(task);
-  errMsg2.innerHTML = checkText(desc);
-  errMsg3.innerHTML = checkText(assigedTo);
-  errMsg4.innerHTML = checkDate(dueDate);
-  errMsg5.innerHTML = checkStatus(state);
+  errMsg1.innerHTML = checkText(taskName);
+  errMsg2.innerHTML = checkText(description);
+  errMsg3.innerHTML = checkText(assigned);
+  errMsg4.innerHTML = checkDate(date);
+  errMsg5.innerHTML = checkStatus(status);
 };
 
 // EventHandlers
@@ -115,16 +139,15 @@ formData.addEventListener('submit', function (e) {
   const task = taskName.value.trim();
   const desc = description.value.trim();
   const assigedTo = assigned.value.trim();
-  const dueDate = date.value;
   const state = status.value;
   checkOnChange();
   // console.log(state);
   if (
     validText(task, desc, assigedTo) &&
     validStatus(state) &&
-    validDate(dueDate)
+    validDate(date)
   ) {
-    taskManager.addTask(task, desc, assigedTo, dueDate, state);
+    taskManager.addTask(task, desc, assigedTo, date.value, state);
     taskManager.save();
     // $('#exampleModal').modal().hide()
     // modal('hide') not working
