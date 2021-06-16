@@ -25,6 +25,7 @@ const errMsg = document.getElementById('errMsg');
 const submitBtn = document.getElementById('submitBtn');
 const addTaskBtn = document.getElementById('addTask');
 const Modal = document.getElementById('exampleModal');
+const doneBtn = document.getElementById('done-container');
 // Founctions
 const clearForm = () => {
   taskName.value =
@@ -89,7 +90,14 @@ formData.addEventListener('submit', function (e) {
   }
 });
 taskList.addEventListener('click', event => {
+
+
+     
+
+
   if (event.target.classList.contains('done-button')) {
+
+
     const parentTask = event.target.closest('.col-xl-4');
     let taskId = Number(parentTask.dataset.taskId);
     console.log(parentTask);
@@ -99,6 +107,8 @@ taskList.addEventListener('click', event => {
     taskManager.save()
     // console.log(task.status);
     taskManager.render();
+   
+    
   }
 
   if(event.target.classList.contains('delete-button')){
@@ -112,4 +122,6 @@ taskList.addEventListener('click', event => {
   }
 
 
+
 });
+
