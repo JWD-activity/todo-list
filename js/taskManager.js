@@ -33,7 +33,7 @@ const createTaskHtml = (id, name, description, assignedTo, dueDate, status) => {
         <div class="row align-items-center">
           <div class="col text-primary">${dueDate}</div>
           <div class="col d-flex justify-content-end">           
-            <span class="d-flex align-items-center"><button type="button" class="btn btn-outline-secondary btn-sm done-button">Done</button></span>
+           ${ status === 'done' ? '' : '<span class="d-flex align-items-center" id="done-container"><button type="button" class="btn btn-outline-secondary btn-sm done-button">Done</button></span>' } 
             <span class="d-flex justify-content-center "><i class="bi bi-x-lg icon-btn delete-button"></i></span>            
           </div>
         </div>
