@@ -51,7 +51,7 @@ const clearForm = () => {
 
 // Check text input
 const checkText = input => {
-  if (!(input.value.trim().length <= 5)) {
+  if (input.value.trim().length > 5) {
     input.classList.add('is-valid');
     input.classList.remove('is-invalid');
     return ``;
@@ -102,7 +102,7 @@ const checkDate = input => {
 };
 
 // Check valid text
-const validText = (...inputs) => inputs.every(input => input.length >= 5);
+const validText = (...inputs) => inputs.every(input => input.length > 5);
 // Check valid status
 const validStatus = input => {
   if (input.length !== 0) return true;
