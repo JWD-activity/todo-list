@@ -1,7 +1,8 @@
 body {
   background-color: #f8f9fa;
 }
-/* Header - title, add item*/
+
+/* Header--------------------------------*/
 .header-container {
   display: flex;
   text-align: center;
@@ -16,18 +17,27 @@ body {
 }
 
 .header-title {
-  /* // flex:1; */
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .add-item-trigger {
-  /* height: 100%;
-    //flex:1; */
   display: flex;
   justify-content: flex-end;
   align-items: center;
   cursor: pointer;
+}
+
+/* Card--------------------------------*/
+
+h5,
+p {
+  margin: 0;
+}
+
+.done-button {
+  font-size: 0.7rem;
 }
 
 .card-shadow {
@@ -39,6 +49,7 @@ body {
   color: #0d253f;
 }
 
+.modal-content.modal-img,
 .card.card-shadow,
 .category-title-review,
 .category-title-todo,
@@ -47,16 +58,13 @@ body {
   background-image: url(../images/bg-27.png);
   background-size: cover;
 }
-.category-container {
-}
-/* .row.position-absolute {
-  top: 10%;
-} */
+
 .category-title {
   margin: 0.75rem;
   font-size: 1.5rem;
   color: rgba(255, 255, 255, 0.507);
 }
+
 .category-title-review,
 .category-title-todo,
 .category-title-inprogress,
@@ -82,37 +90,8 @@ body {
 .category-title-done {
   background-color: #d8d6e3;
 }
-.close-btn {
-  position: absolute;
-  right: 0px;
-  padding-right: 1.5rem;
-}
 
-.modal-blur {
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-}
-
-.modal-header {
-  border: none;
-}
-
-/* Pagination */
-.pagination {
-  margin: 0;
-}
-
-/* Card */
-h5,
-p {
-  margin: 0;
-}
-
-.done-button {
-  font-size: 0.7rem;
-}
-
-/* Icons */
+/* Icon buttons---------------------------*/
 .bi-plus-circle-fill {
   font-size: 1.5rem;
 }
@@ -133,6 +112,28 @@ p {
   background-color: #dee2e6;
 }
 
-.errMessage {
+/* Modal--------------------------------*/
+
+.close-btn {
+  position: absolute;
+  right: 0px;
+  padding-right: 1.5rem;
+}
+
+.modal-blur {
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.modal-header {
+  border: none;
+}
+
+.errMessage,
+.bi.bi-asterisk {
   color: #dc3545;
+}
+
+.bi.bi-asterisk {
+  font-size: 0.5rem;
 }

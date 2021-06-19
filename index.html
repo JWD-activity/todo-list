@@ -65,7 +65,7 @@
         data-backdrop="static"
       >
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
+          <div class="modal-content modal-img">
             <!-- Modal header-->
             <div class="modal-header justify-content-center mt-2 pd-0">
               <div class="d-flex">
@@ -91,19 +91,24 @@
               <form class="row g-3" id="fromData">
                 <!-- Form Name--------------------->
                 <div class="form-group py-1 col-md-12">
-                  <label for="name" class="pb-1">Name</label>
+                  <label for="name" class="pb-1 d-flex align-items-center"
+                    ><i class="bi bi-asterisk me-1"></i>Name
+                  </label>
                   <input
                     type="text"
                     class="form-control"
                     id="name"
                     aria-describedby="nameHelp"
-                    placeholder="Enter Name"
                   />
                   <div class="errMessage" id="errMsg1"></div>
                 </div>
                 <!--Form Description--------------->
                 <div class="form-group py-1 col-md-12">
-                  <label for="description" class="pb-1">Description</label>
+                  <label
+                    for="description"
+                    class="pb-1 d-flex align-items-center"
+                    ><i class="bi bi-asterisk me-1"></i>Description</label
+                  >
                   <textarea
                     class="form-control"
                     id="description"
@@ -113,19 +118,18 @@
                 </div>
                 <!--Form Assigned To--------------->
                 <div class="form-group py-1 col-md-12">
-                  <label for="assigned" class="pb-1">Assigned To</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="assigned"
-                    placeholder="Assigned to"
-                  />
+                  <label for="assigned" class="pb-1 d-flex align-items-center"
+                    ><i class="bi bi-asterisk me-1"></i>Assigned To</label
+                  >
+                  <input type="text" class="form-control" id="assigned" />
                   <div class="errMessage" id="errMsg3"></div>
                 </div>
 
                 <!--Form Due Date------------------->
                 <div class="form-group py-1 col-md-6">
-                  <label for="date" class="pb-1">Due Date</label>
+                  <label for="date" class="pb-1 d-flex align-items-center"
+                    ><i class="bi bi-asterisk me-1"></i>Due Date</label
+                  >
                   <input
                     type="date"
                     class="form-control"
@@ -136,7 +140,9 @@
                 </div>
                 <!--Form Status--------------------->
                 <div class="form-group py-1 col-md-6">
-                  <label for="status" class="pb-1">Status</label>
+                  <label for="status" class="pb-1 d-flex align-items-center"
+                    ><i class="bi bi-asterisk me-1"></i>Status</label
+                  >
                   <select
                     class="form-select form-control"
                     id="status"
@@ -201,7 +207,7 @@
     <!-- Main ends--------------->
 
     <!-- pagination starts------->
-    <div class="row pt-2">
+    <!-- <div class="row pt-2">
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
           <li class="page-item">
@@ -219,7 +225,7 @@
           </li>
         </ul>
       </nav>
-    </div>
+    </div> -->
     <!-- pagination ends--------->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
