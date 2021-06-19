@@ -1,3 +1,6 @@
+body {
+  background-color: #f8f9fa;
+}
 /* Header - title, add item*/
 .header-container {
   display: flex;
@@ -27,6 +30,58 @@
   cursor: pointer;
 }
 
+.card-shadow {
+  box-shadow: 0px 0px 30px rgb(83 88 93 / 10%);
+  border: none;
+}
+
+.card-heading-primary {
+  color: #0d253f;
+}
+
+.card.card-shadow,
+.category-title-review,
+.category-title-todo,
+.category-title-inprogress,
+.category-title-done {
+  background-image: url(../images/bg-27.png);
+  background-size: cover;
+}
+.category-container {
+}
+/* .row.position-absolute {
+  top: 10%;
+} */
+.category-title {
+  margin: 0.75rem;
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.507);
+}
+.category-title-review,
+.category-title-todo,
+.category-title-inprogress,
+.category-title-done {
+  min-height: 8vh;
+  margin: 0 0.1rem 0.5rem 0.1rem;
+  border-radius: 5px;
+}
+
+.icon-title-big {
+  font-size: 4rem;
+  color: rgba(255, 255, 255, 0.849);
+}
+.category-title-review {
+  background-color: #e4647e;
+}
+.category-title-todo {
+  background-color: #309397;
+}
+.category-title-inprogress {
+  background-color: #f9be7c;
+}
+.category-title-done {
+  background-color: #d8d6e3;
+}
 .close-btn {
   position: absolute;
   right: 0px;
