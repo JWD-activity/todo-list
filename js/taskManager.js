@@ -11,7 +11,7 @@ const createTaskHtml = (id, name, description, assignedTo, dueDate, status) => {
           </span>
           
           <span class="col-4 badge pb-1 text-capitalize me-3 ${
-            status === 'todo'
+            status === 'to-do'
               ? 'bg-success'
               : status === 'review'
               ? 'bg-danger'
@@ -100,7 +100,7 @@ class TaskManager {
 
         if (task.status === 'review') {
           reviewHtmlList.push(taskHtml);
-        } else if (task.status === 'todo') {
+        } else if (task.status === 'to-do') {
           todoHtmlList.push(taskHtml);
         } else if (task.status === 'in progress') {
           inprogressHtmlList.push(taskHtml);

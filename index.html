@@ -149,7 +149,7 @@
                     aria-label="status example"
                   >
                     <option value="">Select status</option>
-                    <option value="todo">Todo</option>
+                    <option value="to-do">To-do</option>
                     <option value="review">Review</option>
                     <option value="in progress">In progress</option>
                     <option value="done">Done</option>
@@ -176,29 +176,36 @@
       <!-- Display tasks------------>
       <!-- <div class="row px-5" id="taskList"></div> -->
       <div class="row px-5 pt-2" id="taskList">
-        <div class="col-xl-3 col-md-6 col-sm-12 category-container">
+        <div class="col-xl-3 col-md-6 col-sm-12">
+          <!-- Category title------------>
           <div class="row category-title-review">
-            <!-- <span><i class="bi bi-eyeglasses icon-title-big"></i></span> -->
             <span><h6 class="category-title">Review</h6></span>
           </div>
+          <!-- Display review------------>
           <div id="review" class="row"></div>
         </div>
         <div class="col-xl-3 col-md-6 col-sm-12">
+          <!-- Category title------------>
           <div class="row category-title-todo">
-            <span><h6 class="category-title">Todo</h6></span>
+            <span><h6 class="category-title">To-do</h6></span>
           </div>
+          <!-- Display to do----------->
           <div id="todo" class="row"></div>
         </div>
         <div class="col-xl-3 col-md-6 col-sm-12">
+          <!-- Category title------------>
           <div class="row category-title-inprogress">
             <span><h6 class="category-title">In Progress</h6></span>
           </div>
+          <!-- Display in progress----------->
           <div id="inprogress" class="row"></div>
         </div>
         <div class="col-xl-3 col-md-6 col-sm-12">
+          <!-- Category title---------------->
           <div class="row category-title-done">
             <span><h6 class="category-title">Done</h6></span>
           </div>
+          <!-- Display done------------------>
           <div id="done" class="row"></div>
         </div>
         <!-- </div> -->
