@@ -114,8 +114,8 @@ const validStatus = input => {
 };
 // Check valid date
 const validDate = input => {
-  if (checkDate(input)) return true;
-  else return true;
+  if (checkDate(input) === '') return true;
+  else return false;
 };
 
 // Check onchange and render error message
