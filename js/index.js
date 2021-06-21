@@ -114,8 +114,8 @@ const validStatus = input => {
 };
 // Check valid date
 const validDate = input => {
-  if (checkDate(input)) return true;
-  else return true;
+  if (checkDate(input) === '') return true;
+  else return false;
 };
 
 // Check onchange and render error message
@@ -166,15 +166,8 @@ formData.addEventListener('submit', function (e) {
 });
 
 taskList.addEventListener('click', event => {
-
-
-     
-
-
   if (event.target.classList.contains('done-button')) {
-
-
-    const parentTask = event.target.closest('.col-xl-4');
+    const parentTask = event.target.closest('.card-list');
     let taskId = Number(parentTask.dataset.taskId);
     console.log(parentTask);
     console.log(taskId);
@@ -183,12 +176,10 @@ taskList.addEventListener('click', event => {
     taskManager.save();
     // console.log(task.status);
     taskManager.render();
-   
-    
   }
 
   if (event.target.classList.contains('delete-button')) {
-    const parentTask = event.target.closest('.col-xl-4');
+    const parentTask = event.target.closest('.card-list');
     let taskId = Number(parentTask.dataset.taskId);
     // console.log(parentTask);
     // console.log(taskId);
@@ -196,12 +187,4 @@ taskList.addEventListener('click', event => {
     taskManager.save();
     taskManager.render();
   }
-
-
-
-
 });
-
-
-
-
