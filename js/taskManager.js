@@ -1,5 +1,4 @@
 const createTaskHtml = (id, name, description, assignedTo, dueDate, status) => {
-
   const html = `
     <div class="card-list" data-task-id="${id}">
     <div class="card card-shadow p-2 mb-3">
@@ -80,47 +79,46 @@ class TaskManager {
   }
 
   render() {
-
     let doneHtmlList = [];
     let reviewHtmlList = [];
     let todoHtmlList = [];
     let inprogressHtmlList = [];
 
-    if (this.tasks.length === 0) {
-      this.tasks = [];
-    } else {
-      this.tasks.forEach(task => {
-        let date = new Date(task.dueDate);
-        let formattedDate = date.toLocaleDateString();
-        let taskHtml = createTaskHtml(
-          task.id,
-          task.name,
-          task.description,
-          task.assignedTo,
-          formattedDate,
-          task.status
-        );
+    // if (this.tasks.length === 0) {
+    //   this.tasks = [];
+    // } else {
+    this.tasks.forEach(task => {
+      let date = new Date(task.dueDate);
+      let formattedDate = date.toLocaleDateString();
+      let taskHtml = createTaskHtml(
+        task.id,
+        task.name,
+        task.description,
+        task.assignedTo,
+        formattedDate,
+        task.status
+      );
 
-        if (task.status === 'review') {
-          reviewHtmlList.push(taskHtml);
-        } else if (task.status === 'to-do') {
-          todoHtmlList.push(taskHtml);
-        } else if (task.status === 'in progress') {
-          inprogressHtmlList.push(taskHtml);
-        } else {
-          doneHtmlList.push(taskHtml);
-        }
-        // tasksHtmlList.push(taskHtml);
-        let reviewHtml = reviewHtmlList.join('\n');
-        document.getElementById('review').innerHTML = reviewHtml;
-        let todoHtml = todoHtmlList.join('\n');
-        document.getElementById('todo').innerHTML = todoHtml;
-        let inprogressHtml = inprogressHtmlList.join('\n');
-        document.getElementById('inprogress').innerHTML = inprogressHtml;
-        let doneHtml = doneHtmlList.join('\n');
-        document.getElementById('done').innerHTML = doneHtml;
-      });
-    }
+      if (task.status === 'review') {
+        reviewHtmlList.push(taskHtml);
+      } else if (task.status === 'to-do') {
+        todoHtmlList.push(taskHtml);
+      } else if (task.status === 'in progress') {
+        inprogressHtmlList.push(taskHtml);
+      } else {
+        doneHtmlList.push(taskHtml);
+      }
+    });
+
+    let reviewHtml = reviewHtmlList.join('\n');
+    document.getElementById('review').innerHTML = reviewHtml;
+    let todoHtml = todoHtmlList.join('\n');
+    document.getElementById('todo').innerHTML = todoHtml;
+    let inprogressHtml = inprogressHtmlList.join('\n');
+    document.getElementById('inprogress').innerHTML = inprogressHtml;
+    let doneHtml = doneHtmlList.join('\n');
+    document.getElementById('done').innerHTML = doneHtml;
+    // }
 
     // let tasksHtml = tasksHtmlList.join('\n');
 
