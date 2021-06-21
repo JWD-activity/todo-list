@@ -1,5 +1,5 @@
 const createTaskHtml = (id, name, description, assignedTo, dueDate, status) => {
-  const html = `
+  const html = ` 
     <div class="col-xl-4 col-md-6 col-sm-12" data-task-id="${id}">
     <div class="card shadow-sm p-2 mb-3">
       <div class="card-body">
@@ -66,6 +66,7 @@ class TaskManager {
       // console.log(task)
       let date = new Date(task.dueDate);
       let formattedDate = date.toLocaleDateString();
+  
       let taskHtml = createTaskHtml(
         task.id,
         task.name,
@@ -75,9 +76,21 @@ class TaskManager {
         task.status
       );
       tasksHtmlList.push(taskHtml);
+
+          let tasksHtml = tasksHtmlList.join('\n');
+      if (task.status === 'review') {
+     
+    document.getElementById('review').innerHTML = tasksHtml;
+
+
+      } else {
+        document.getElementById('taskList').innerHTML = tasksHtml;
+      }
     }
-    let tasksHtml = tasksHtmlList.join('\n');
-    document.getElementById('taskList').innerHTML = tasksHtml;
+
+  
+    // let tasksHtml = tasksHtmlList.join('\n');
+    // document.getElementById('taskList').innerHTML = tasksHtml;
   }
   save() {
     // Create a string for all tasks
