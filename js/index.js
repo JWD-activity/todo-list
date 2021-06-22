@@ -69,7 +69,6 @@ const checkInput = () => {
     taskName.classList.remove('is-invalid');
     // // no error message
     setSuccessFor(taskName, '');
-    console.log(1);
     isValid.push(true);
   } else {
     taskName.classList.remove('is-valid');
@@ -140,10 +139,9 @@ const checkInput = () => {
     date.classList.remove('is-valid');
     date.classList.add('is-invalid');
     setErrorFor(date, `Please select due date.`);
-    console.log('-');
     isValid.push(false);
   }
-  console.log(isValid);
+  // console.log(isValid);
   return isValid;
 };
 
