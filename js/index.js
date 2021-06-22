@@ -153,7 +153,7 @@ const setErrorFor = (input, message) => {
   const errMsgDiv = formControl.querySelector('.errMessage');
 
   errMsgDiv.innerText = message;
-  console.log(errMsgDiv);
+  // console.log(errMsgDiv);
 };
 
 const setSuccessFor = (input, message) => {
