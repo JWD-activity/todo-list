@@ -61,6 +61,7 @@ const checkInput = () => {
   const assignedTrimmed = assigned.value.trim();
   let today = new Date();
   let dateSelected = new Date(date.value);
+  let isValid = [];
   // set time 00:00:00, since we only want date
 dateSelected.setHours(0, 0, 0, 0);
 today.setHours(0, 0, 0, 0);
@@ -73,52 +74,57 @@ today.setHours(0, 0, 0, 0);
    taskName.classList.remove('is-invalid');
     // // no error message
     setSuccessFor(taskName, '')
+    console.log(1);
+    isValid.push(true);
   } else {
    taskName.classList.remove('is-valid');
    taskName.classList.add('is-invalid');
     // error message is displayed
     setErrorFor(taskName, `Please enter more than 5 characters.`);
-
+    isValid.push(false);
   }
 
   // CHECK DESCRIPTION INPUT
   if (desc.length > 5) {
    description.classList.add('is-valid');
- description.classList.remove('is-invalid');
+   description.classList.remove('is-invalid');
     // // no error message
     setSuccessFor(description, '')
-
+    isValid.push(true);
   } else {
   description.classList.remove('is-valid');
   description.classList.add('is-invalid');
     setErrorFor(description, `Please enter more than 5 characters.`);
+    isValid.push(false);
   }
 
 
 // CHECK ASSIGNEDTO INPUT
   if (assignedTrimmed.length > 5) {
-assignedTo.classList.add('is-valid');
-assignedTo.classList.remove('is-invalid');
+    assignedTo.classList.add('is-valid');
+    assignedTo.classList.remove('is-invalid');
     // // no error message
     setSuccessFor(assignedTo, '')
-
+    isValid.push(true);
   } else {
-assignedTo.classList.remove('is-valid');
-assignedTo.classList.add('is-invalid');
+    assignedTo.classList.remove('is-valid');
+    assignedTo.classList.add('is-invalid');
     setErrorFor(assignedTo, `Please enter more than 5 characters.`);
+    isValid.push(false);
   }
 
   // CHECK STATUS INPUT
   if (status.value.length > 0) {
     status.classList.add('is-valid');
-    status.classList.remove('is-invalid');
-  
-    setSuccessFor(status, '')
+    status.classList.remove('is-invalid');  
+    setSuccessFor(status, '');
+    isValid.push(true);
   } else {
     status.classList.remove('is-valid');
     status.classList.add('is-invalid');
     // return error if status not selected
     setErrorFor(status, `Please select status`);
+    isValid.push(false);
   }
 
   // CHECK DATE INPUT
@@ -128,19 +134,23 @@ assignedTo.classList.add('is-invalid');
       date.classList.remove('is-valid');
       date.classList.add('is-invalid');
       setErrorFor(date, `invalid date, select again.`);
+      isValid.push(false);
     } else {
       date.classList.add('is-valid');
       date.classList.remove('is-invalid');
       setSuccessFor(date, '');
+      isValid.push(true);
     }
   } else {
       // if a date is not slected
     date.classList.remove('is-valid');
     date.classList.add('is-invalid');
     setErrorFor(date, `Please select due date.`);
+    console.log("-");
+    isValid.push(false);
   }
-  
-
+  console.log(isValid);
+return isValid;
 };
 
 
@@ -150,17 +160,14 @@ const setErrorFor = (input, message) => {
   const errMsgDiv = formControl.querySelector('.errMessage');
 
   errMsgDiv.innerText = message;
-  console.log(errMsgDiv)
-  
+  console.log(errMsgDiv)  
 }
 
 const setSuccessFor = (input, message) => {
   const formControl = input.parentElement;
   const errMsgDiv = formControl.querySelector('.errMessage');
 
-  errMsgDiv.innerText = message;
-
-  
+  errMsgDiv.innerText = message;  
 }
 
 
@@ -191,15 +198,16 @@ formData.addEventListener('submit', function (e) {
   //   validStatus(state) &&
   //   validDate(date)
   // ) {
-    checkInput();
-    taskManager.addTask(task, desc, assignedTo, date.value, state);
-    taskManager.save();
-    // close modal after submit
-    $('.btn-closemodal').trigger('click');
-    taskManager.render();
-    clearForm();
-  }
-);
+  
+    if(checkInput().every(input=>input===true)){
+      taskManager.addTask(task, desc, assignedTo, date.value, state);
+      taskManager.save();
+      // close modal after submit
+      $('.btn-closemodal').trigger('click');
+      taskManager.render();
+      clearForm();
+    }     
+  });
 
 // Handler to remove done button and delete a task
 taskList.addEventListener('click', event => {
