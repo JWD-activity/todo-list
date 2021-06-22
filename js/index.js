@@ -21,21 +21,18 @@ const addTaskBtn = document.getElementById('addTask');
 const formElements = document.getElementsByClassName('form-control');
 const taskList = document.getElementById('taskList');
 
-
-
 // Functions
 // Clear form
 const clearForm = () => {
-
   // clear each input
-  taskName.value = 
-  description.value =
+  taskName.value =
+    description.value =
     assigned.value =
     date.value =
     status.value =
       '';
 
-      // clear all error messages
+  // clear all error messages
   errMsg1.textContent =
     errMsg2.textContent =
     errMsg3.textContent =
@@ -43,14 +40,12 @@ const clearForm = () => {
     errMsg5.textContent =
       '';
 
-
-// spread form elements into an array to do a forEach, to remove bootsrap classes when the form is cleared
+  // spread form elements into an array to do a forEach, to remove bootsrap classes when the form is cleared
   [...formElements].forEach(el => {
     el.classList.remove('is-valid');
     el.classList.remove('is-invalid');
   });
 };
-
 
 // Check input of form and show an error message if invalid
 
@@ -63,22 +58,22 @@ const checkInput = () => {
   let dateSelected = new Date(date.value);
   let isValid = [];
   // set time 00:00:00, since we only want date
-dateSelected.setHours(0, 0, 0, 0);
-today.setHours(0, 0, 0, 0);
-  
-// CHECK TASK NAME INPUT
+  dateSelected.setHours(0, 0, 0, 0);
+  today.setHours(0, 0, 0, 0);
+
+  // CHECK TASK NAME INPUT
 
   // remove white space from input and check length is greater than 5
   if (task.length > 5) {
-   taskName.classList.add('is-valid');
-   taskName.classList.remove('is-invalid');
+    taskName.classList.add('is-valid');
+    taskName.classList.remove('is-invalid');
     // // no error message
-    setSuccessFor(taskName, '')
+    setSuccessFor(taskName, '');
     console.log(1);
     isValid.push(true);
   } else {
-   taskName.classList.remove('is-valid');
-   taskName.classList.add('is-invalid');
+    taskName.classList.remove('is-valid');
+    taskName.classList.add('is-invalid');
     // error message is displayed
     setErrorFor(taskName, `Please enter more than 5 characters.`);
     isValid.push(false);
@@ -86,25 +81,24 @@ today.setHours(0, 0, 0, 0);
 
   // CHECK DESCRIPTION INPUT
   if (desc.length > 5) {
-   description.classList.add('is-valid');
-   description.classList.remove('is-invalid');
+    description.classList.add('is-valid');
+    description.classList.remove('is-invalid');
     // // no error message
-    setSuccessFor(description, '')
+    setSuccessFor(description, '');
     isValid.push(true);
   } else {
-  description.classList.remove('is-valid');
-  description.classList.add('is-invalid');
+    description.classList.remove('is-valid');
+    description.classList.add('is-invalid');
     setErrorFor(description, `Please enter more than 5 characters.`);
     isValid.push(false);
   }
 
-
-// CHECK ASSIGNEDTO INPUT
+  // CHECK ASSIGNEDTO INPUT
   if (assignedTrimmed.length > 5) {
     assignedTo.classList.add('is-valid');
     assignedTo.classList.remove('is-invalid');
     // // no error message
-    setSuccessFor(assignedTo, '')
+    setSuccessFor(assignedTo, '');
     isValid.push(true);
   } else {
     assignedTo.classList.remove('is-valid');
@@ -116,7 +110,7 @@ today.setHours(0, 0, 0, 0);
   // CHECK STATUS INPUT
   if (status.value.length > 0) {
     status.classList.add('is-valid');
-    status.classList.remove('is-invalid');  
+    status.classList.remove('is-invalid');
     setSuccessFor(status, '');
     isValid.push(true);
   } else {
@@ -142,17 +136,16 @@ today.setHours(0, 0, 0, 0);
       isValid.push(true);
     }
   } else {
-      // if a date is not slected
+    // if a date is not slected
     date.classList.remove('is-valid');
     date.classList.add('is-invalid');
     setErrorFor(date, `Please select due date.`);
-    console.log("-");
+    console.log('-');
     isValid.push(false);
   }
   console.log(isValid);
-return isValid;
+  return isValid;
 };
-
 
 // Error Message functions
 const setErrorFor = (input, message) => {
@@ -160,16 +153,15 @@ const setErrorFor = (input, message) => {
   const errMsgDiv = formControl.querySelector('.errMessage');
 
   errMsgDiv.innerText = message;
-  console.log(errMsgDiv)  
-}
+  // console.log(errMsgDiv);
+};
 
 const setSuccessFor = (input, message) => {
   const formControl = input.parentElement;
   const errMsgDiv = formControl.querySelector('.errMessage');
 
-  errMsgDiv.innerText = message;  
-}
-
+  errMsgDiv.innerText = message;
+};
 
 // EventHandlers
 
@@ -184,30 +176,21 @@ closeBtn.addEventListener('click', clearForm);
 formData.addEventListener('submit', function (e) {
   // https://stackoverflow.com/questions/35552813/call-function-with-bootstrap-submit-button
   e.preventDefault();
-  // Get data from form 
+  // Get data from form
   const task = taskName.value.trim();
   const desc = description.value.trim();
   const assignedTo = assigned.value.trim();
   const state = status.value;
-
-  // checkOnChange();
-
-  // if (
-  //   // check validation of inputs
-  // checkText() &&
-  //   validStatus(state) &&
-  //   validDate(date)
-  // ) {
-  
-    if(checkInput().every(input=>input===true)){
-      taskManager.addTask(task, desc, assignedTo, date.value, state);
-      taskManager.save();
-      // close modal after submit
-      $('.btn-closemodal').trigger('click');
-      taskManager.render();
-      clearForm();
-    }     
-  });
+  // Check if every inputs are valid value then add task
+  if (checkInput().every(input => input === true)) {
+    taskManager.addTask(task, desc, assignedTo, date.value, state);
+    taskManager.save();
+    // close modal after submit
+    $('.btn-closemodal').trigger('click');
+    taskManager.render();
+    clearForm();
+  }
+});
 
 // Handler to remove done button and delete a task
 taskList.addEventListener('click', event => {
@@ -215,8 +198,8 @@ taskList.addEventListener('click', event => {
   if (event.target.classList.contains('done-button')) {
     // find the closest element with class card-list
     const parentTask = event.target.closest('.card-list');
-     // Use data attributes to access dataset which gives us the id 
-     // data-task-id in html = dataset.taskId in javascript
+    // Use data attributes to access dataset which gives us the id
+    // data-task-id in html = dataset.taskId in javascript
     let taskId = Number(parentTask.dataset.taskId);
 
     const task = taskManager.getTaskById(taskId);
