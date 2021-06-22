@@ -62,12 +62,20 @@ const createTaskHtml = (id, name, description, assignedTo, dueDate, status) => {
   return html;
 };
 class TaskManager {
+
+  // Properties
   constructor(currentId = 0) {
     this.tasks = [];
     this.currentId = currentId;
   }
+
+  // Methods
+  // Add task method
   addTask(name, description, assignedTo, dueDate, status) {
+    // increment id
     let id = this.currentId++;
+
+    // push to tasks array
     this.tasks.push({
       id,
       name,
@@ -78,15 +86,21 @@ class TaskManager {
     });
   }
 
+  // Render Method
   render() {
+    // declare status arrays to categorise each task
     let doneHtmlList = [];
     let reviewHtmlList = [];
     let todoHtmlList = [];
     let inprogressHtmlList = [];
 
+
     this.tasks.forEach(task => {
+      // Date objects contain a Number that represents milliseconds since 1 January 1970 UTC e.g. Sun Dec 17 1995 03:24:00 GMT...
       let date = new Date(task.dueDate);
+      // format date to readable string e.g. 01/07/2021
       let formattedDate = date.toLocaleDateString();
+      // pass values into create html card function
       let taskHtml = createTaskHtml(
         task.id,
         task.name,
@@ -96,6 +110,7 @@ class TaskManager {
         task.status
       );
 
+      // Push cards into approriate status array
       if (task.status === 'review') {
         reviewHtmlList.push(taskHtml);
       } else if (task.status === 'to-do') {
@@ -107,6 +122,7 @@ class TaskManager {
       }
     });
 
+    // Join cards and insert them into the approriate div tag
     let reviewHtml = reviewHtmlList.join('\n');
     document.getElementById('review').innerHTML = reviewHtml;
     let todoHtml = todoHtmlList.join('\n');
@@ -117,6 +133,7 @@ class TaskManager {
     document.getElementById('done').innerHTML = doneHtml;
   }
 
+  // Save Method
   save() {
     // Create a string for all tasks
     let tasksJson = JSON.stringify(this.tasks);
@@ -127,8 +144,10 @@ class TaskManager {
     // Store the string variable in local storage under key 'currentId'
     localStorage.setItem('currentId', currentId);
   }
+
+  // Load Method
   load() {
-    // check if any tasks are saved in localStorage
+    // check if any tasks are saved or exists in localStorage, error will produce if its empty
     if (localStorage.getItem('tasks') !== null) {
       const tasksJson = localStorage.getItem('tasks');
       // Convert the tasksJson string to an array and store it in this.tasks
@@ -141,6 +160,8 @@ class TaskManager {
       this.currentId = parseInt(currentId);
     }
   }
+
+  // Get task by the id
   getTaskById(taskId) {
     let foundTask;
     this.tasks.find(task => {
@@ -150,6 +171,8 @@ class TaskManager {
     });
     return foundTask;
   }
+
+  // Delete task by id
   deleteTask(taskId) {
     let newTasks = [];
     this.tasks.forEach(task => {
