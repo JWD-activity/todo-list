@@ -84,9 +84,6 @@ class TaskManager {
     let todoHtmlList = [];
     let inprogressHtmlList = [];
 
-    // if (this.tasks.length === 0) {
-    //   this.tasks = [];
-    // } else {
     this.tasks.forEach(task => {
       let date = new Date(task.dueDate);
       let formattedDate = date.toLocaleDateString();
@@ -118,29 +115,6 @@ class TaskManager {
     document.getElementById('inprogress').innerHTML = inprogressHtml;
     let doneHtml = doneHtmlList.join('\n');
     document.getElementById('done').innerHTML = doneHtml;
-    // }
-
-    // let tasksHtml = tasksHtmlList.join('\n');
-
-    // let tasksHtmlList = [];
-    // for (let i = 0; i < this.tasks.length; i++) {
-    //   let task = this.tasks[i];
-    //   // console.log(task)
-    //   let date = new Date(task.dueDate);
-    //   let formattedDate = date.toLocaleDateString();
-    //   let taskHtml = createTaskHtml(
-    //     task.id,
-    //     task.name,
-    //     task.description,
-    //     task.assignedTo,
-    //     formattedDate,
-    //     task.status
-    //   );
-    //   tasksHtmlList.push(taskHtml);
-    // }
-
-    // let tasksHtml = tasksHtmlList.join('\n');
-    // document.getElementById('taskList').innerHTML = tasksHtml;
   }
 
   save() {
@@ -172,7 +146,6 @@ class TaskManager {
     this.tasks.find(task => {
       if (task.id === taskId) {
         foundTask = task;
-        // console.log(foundTask);
       }
     });
     return foundTask;
