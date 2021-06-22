@@ -64,7 +64,11 @@ const checkInput = () => {
   // set time 00:00:00, since we only want date
 dateSelected.setHours(0, 0, 0, 0);
 today.setHours(0, 0, 0, 0);
+
   
+
+
+
 // CHECK TASK NAME INPUT
 
   // remove white space from input and check length is greater than 5
@@ -134,12 +138,12 @@ assignedTo.classList.add('is-invalid');
       setSuccessFor(date, '');
     }
   } else {
-      // if a date is not slected
+      // if a date is not selected
     date.classList.remove('is-valid');
     date.classList.add('is-invalid');
     setErrorFor(date, `Please select due date.`);
   }
-  
+
 
 };
 
@@ -150,7 +154,6 @@ const setErrorFor = (input, message) => {
   const errMsgDiv = formControl.querySelector('.errMessage');
 
   errMsgDiv.innerText = message;
-  console.log(errMsgDiv)
   
 }
 
@@ -191,14 +194,17 @@ formData.addEventListener('submit', function (e) {
   //   validStatus(state) &&
   //   validDate(date)
   // ) {
-    checkInput();
-    taskManager.addTask(task, desc, assignedTo, date.value, state);
-    taskManager.save();
-    // close modal after submit
-    $('.btn-closemodal').trigger('click');
-    taskManager.render();
-    clearForm();
-  }
+
+      checkInput();
+      taskManager.addTask(task, desc, assignedTo, date.value, state);
+      taskManager.save();
+      // close modal after submit
+      $('.btn-closemodal').trigger('click');
+      taskManager.render();
+      clearForm();
+    }
+ 
+  
 );
 
 // Handler to remove done button and delete a task
