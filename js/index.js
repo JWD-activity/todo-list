@@ -11,7 +11,7 @@ const submitForm = document.getElementById('submitForm');
 const formData = document.getElementById('formData');
 const taskName = document.getElementById('name');
 const description = document.getElementById('description');
-const assigned = document.getElementById('assigned');
+const assignedTo = document.getElementById('assigned');
 const date = document.getElementById('date');
 const status = document.getElementById('status');
 const btnAdd = document.getElementById('addBtn');
@@ -20,6 +20,8 @@ const submitBtn = document.getElementById('submitBtn');
 const addTaskBtn = document.getElementById('addTask');
 const formElements = document.getElementsByClassName('form-control');
 const taskList = document.getElementById('taskList');
+
+
 
 // Functions
 // Clear form
@@ -50,94 +52,117 @@ const clearForm = () => {
 };
 
 
-// FUNCTIONS FOR SHOWING ERROR MESSAGES IN REAL TIME
+// Check input of form and show an error message if invalid
 
-// Check text input
-const checkText = input => {
-  // remove white space from input and check length is greater than 5
-  if (input.value.trim().length > 5) {
-    input.classList.add('is-valid');
-    input.classList.remove('is-invalid');
-    // no error message
-    return ``;
-  } else {
-    input.classList.remove('is-valid');
-    input.classList.add('is-invalid');
-    // error message is displayed
-    return `Please enter more than 5 characters.`;
-  }
-};
-
-// Check status
-const checkStatus = input => {
-  // if a status is selected
-  if (!(input.value.length === 0)) {
-    input.classList.add('is-valid');
-    input.classList.remove('is-invalid');
-    return ``;
-  } else {
-    input.classList.remove('is-valid');
-    input.classList.add('is-invalid');
-    // return error if status not selected
-    return `Please select status.`;
-  }
-};
-
-// Check date
-const checkDate = input => {
+// Check text input function
+const checkInput = () => {
+  const task = taskName.value.trim();
+  const desc = description.value.trim();
+  const assignedTrimmed = assigned.value.trim();
   let today = new Date();
-
-  let dateSelected = new Date(input.value);
-
+  let dateSelected = new Date(date.value);
   // set time 00:00:00, since we only want date
 dateSelected.setHours(0, 0, 0, 0);
 today.setHours(0, 0, 0, 0);
+  
+// CHECK TASK NAME INPUT
+
+  // remove white space from input and check length is greater than 5
+  if (task.length > 5) {
+   taskName.classList.add('is-valid');
+   taskName.classList.remove('is-invalid');
+    // // no error message
+    setSuccessFor(taskName, '')
+  } else {
+   taskName.classList.remove('is-valid');
+   taskName.classList.add('is-invalid');
+    // error message is displayed
+    setErrorFor(taskName, `Please enter more than 5 characters.`);
+
+  }
+
+  // CHECK DESCRIPTION INPUT
+  if (desc.length > 5) {
+   description.classList.add('is-valid');
+ description.classList.remove('is-invalid');
+    // // no error message
+    setSuccessFor(description, '')
+
+  } else {
+  description.classList.remove('is-valid');
+  description.classList.add('is-invalid');
+    setErrorFor(description, `Please enter more than 5 characters.`);
+  }
 
 
-  if (input.value.length !== 0) {
+// CHECK ASSIGNEDTO INPUT
+  if (assignedTrimmed.length > 5) {
+assignedTo.classList.add('is-valid');
+assignedTo.classList.remove('is-invalid');
+    // // no error message
+    setSuccessFor(assignedTo, '')
+
+  } else {
+assignedTo.classList.remove('is-valid');
+assignedTo.classList.add('is-invalid');
+    setErrorFor(assignedTo, `Please enter more than 5 characters.`);
+  }
+
+  // CHECK STATUS INPUT
+  if (status.value.length > 0) {
+    status.classList.add('is-valid');
+    status.classList.remove('is-invalid');
+  
+    setSuccessFor(status, '')
+  } else {
+    status.classList.remove('is-valid');
+    status.classList.add('is-invalid');
+    // return error if status not selected
+    setErrorFor(status, `Please select status`);
+  }
+
+  // CHECK DATE INPUT
+  if (date.value.length !== 0) {
     // if the date is selected from past date show error (past date smaller than today), else no error
     if (dateSelected < today) {
-      input.classList.remove('is-valid');
-      input.classList.add('is-invalid');
-      return `invalid date, select again.`;
+      date.classList.remove('is-valid');
+      date.classList.add('is-invalid');
+      setErrorFor(date, `invalid date, select again.`);
     } else {
-      input.classList.add('is-valid');
-      input.classList.remove('is-invalid');
-      return ``;
+      date.classList.add('is-valid');
+      date.classList.remove('is-invalid');
+      setSuccessFor(date, '');
     }
   } else {
       // if a date is not slected
-    input.classList.remove('is-valid');
-    input.classList.add('is-invalid');
-    return `Please select due date.`;
+    date.classList.remove('is-valid');
+    date.classList.add('is-invalid');
+    setErrorFor(date, `Please select due date.`);
   }
+  
+
 };
 
-// FUNCTIONS FOR CHECKING INPUTS WHEN SUBMIT BUTTON IS CLICKED
-// Check valid text - When you click submit everything is validated and are allowed to submit
-// 'every' checks every element to be greater than 5 characters
-const validText = (...inputs) => inputs.every(input => input.length > 5);
 
-// Check valid status
-const validStatus = input => {
-  if (input.length !== 0) return true;
-  else return false;
-};
+// Error Message functions
+const setErrorFor = (input, message) => {
+  const formControl = input.parentElement;
+  const errMsgDiv = formControl.querySelector('.errMessage');
 
-// Check valid date
-const validDate = input => {
-  if (checkDate(input) === '') return true;
-  else return false;
-};
+  errMsgDiv.innerText = message;
+  console.log(errMsgDiv)
+  
+}
 
-// Check onchange and render error message
-const checkOnChange = () => {
-  errMsg1.innerHTML = checkText(taskName);
-  errMsg2.innerHTML = checkText(description);
-  errMsg3.innerHTML = checkText(assigned);
-  errMsg4.innerHTML = checkDate(date);
-  errMsg5.innerHTML = checkStatus(status);
-};
+const setSuccessFor = (input, message) => {
+  const formControl = input.parentElement;
+  const errMsgDiv = formControl.querySelector('.errMessage');
+
+  errMsgDiv.innerText = message;
+
+  
+}
+
 
 // EventHandlers
 
@@ -145,7 +170,7 @@ const checkOnChange = () => {
 closeBtn.addEventListener('click', clearForm);
 // form elements handler - as soon as changes are made in the inputs it validates each one
 [...formElements].forEach(el => {
-  el.addEventListener('change', checkOnChange);
+  el.addEventListener('change', checkInput);
 });
 
 // submit button handler
@@ -155,26 +180,28 @@ formData.addEventListener('submit', function (e) {
   // Get data from form 
   const task = taskName.value.trim();
   const desc = description.value.trim();
-  const assigedTo = assigned.value.trim();
+  const assignedTo = assigned.value.trim();
   const state = status.value;
 
-  checkOnChange();
+  // checkOnChange();
 
-  if (
-    // check validation of inputs
-    validText(task, desc, assigedTo) &&
-    validStatus(state) &&
-    validDate(date)
-  ) {
-    taskManager.addTask(task, desc, assigedTo, date.value, state);
+  // if (
+  //   // check validation of inputs
+  // checkText() &&
+  //   validStatus(state) &&
+  //   validDate(date)
+  // ) {
+    checkInput();
+    taskManager.addTask(task, desc, assignedTo, date.value, state);
     taskManager.save();
     // close modal after submit
     $('.btn-closemodal').trigger('click');
     taskManager.render();
     clearForm();
   }
-});
+);
 
+// Handler to remove done button and delete a task
 taskList.addEventListener('click', event => {
   // if theres a done button
   if (event.target.classList.contains('done-button')) {
