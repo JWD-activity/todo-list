@@ -1,20 +1,14 @@
 'use strict';
+// Create taskManager instance
 const taskManager = new TaskManager();
+// Check local storge
 taskManager.load();
-
-// console.log(taskManager.tasks);
-// let taskHtml = createTaskHtml(
-//   "test",
-//   "something",
-//   "marc",
-//   "may 25th",
-//   "pending"
-// );
+// Render display on page
 taskManager.render();
 // Element seletors
 const closeForm = document.getElementById('closeForm');
 const submitForm = document.getElementById('submitForm');
-const formData = document.getElementById('fromData');
+const formData = document.getElementById('formData');
 const taskName = document.getElementById('name');
 const description = document.getElementById('description');
 const assigned = document.getElementById('assigned');
@@ -24,14 +18,10 @@ const btnAdd = document.getElementById('addBtn');
 const errMsg = document.getElementById('errMsg');
 const submitBtn = document.getElementById('submitBtn');
 const addTaskBtn = document.getElementById('addTask');
-const Modal = document.getElementById('exampleModal');
-
-// Founctions
-
 const formElements = document.getElementsByClassName('form-control');
 
+// Functions
 // Clear form
-
 const clearForm = () => {
   taskName.value =
     description.value =
@@ -86,8 +76,7 @@ const checkDate = input => {
   // set time 00:00:00
   dateSelected.setHours(0, 0, 0, 0);
   today.setHours(0, 0, 0, 0);
-  // console.log(`selected date:${dateSelected}`);
-  // console.log(`now:${today}`);
+
   if (input.value.length !== 0) {
     if (today > dateSelected) {
       input.classList.remove('is-valid');
@@ -107,11 +96,13 @@ const checkDate = input => {
 
 // Check valid text
 const validText = (...inputs) => inputs.every(input => input.length > 5);
+
 // Check valid status
 const validStatus = input => {
   if (input.length !== 0) return true;
   else return false;
 };
+
 // Check valid date
 const validDate = input => {
   if (checkDate(input) === '') return true;
@@ -128,14 +119,13 @@ const checkOnChange = () => {
 };
 
 // EventHandlers
+// close button handler
 closeBtn.addEventListener('click', clearForm);
-
+// form elements handler
 [...formElements].forEach(el => {
   el.addEventListener('change', checkOnChange);
 });
-// addTaskBtn.addEventListener('click', function(){
-//     submitBtn.setAttribute('data-dismiss', '');
-// })
+// submit button handler
 formData.addEventListener('submit', function (e) {
   // https://stackoverflow.com/questions/35552813/call-function-with-bootstrap-submit-button
   e.preventDefault();
@@ -144,8 +134,9 @@ formData.addEventListener('submit', function (e) {
   const desc = description.value.trim();
   const assigedTo = assigned.value.trim();
   const state = status.value;
+
   checkOnChange();
-  // console.log(state);
+
   if (
     validText(task, desc, assigedTo) &&
     validStatus(state) &&
@@ -153,15 +144,9 @@ formData.addEventListener('submit', function (e) {
   ) {
     taskManager.addTask(task, desc, assigedTo, date.value, state);
     taskManager.save();
-    // $('#exampleModal').modal().hide()
-    // modal('hide') not working
-    // $('body').removeClass('modal-open');
     $('.btn-closemodal').trigger('click');
-    // $('.modal-backdrop').remove();
     taskManager.render();
     clearForm();
-    // console.log(taskManager.tasks);
-    // console.log("submitted successfully");
   }
 });
 
@@ -174,15 +159,13 @@ taskList.addEventListener('click', event => {
     const task = taskManager.getTaskById(taskId);
     task.status = 'done';
     taskManager.save();
-    // console.log(task.status);
     taskManager.render();
   }
 
   if (event.target.classList.contains('delete-button')) {
     const parentTask = event.target.closest('.card-list');
     let taskId = Number(parentTask.dataset.taskId);
-    // console.log(parentTask);
-    // console.log(taskId);
+
     taskManager.deleteTask(taskId);
     taskManager.save();
     taskManager.render();
