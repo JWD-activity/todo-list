@@ -1,8 +1,12 @@
-# Task Planner
+## Task Planner
+https://jwd-activity.github.io/jwd-js-assessment/
+
+## Technologies used
 ![Generic badge](https://img.shields.io/badge/HTML-blue.svg)
 ![Generic badge](https://img.shields.io/badge/CSS-brightgreen.svg) 
 ![Generic badge](https://img.shields.io/badge/Bootstrap-blueviolet.svg)
 ![Generic badge](https://img.shields.io/badge/JavaScript-yellow.svg)
+
 ## Description
 This project done by using **HTML, CSS, Bootstrap**, and **JavaScript** to create **Task Planner application**. This application allows users to easily manage tasks by status, such as to-do, in progress, review, and done.
 
