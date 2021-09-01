@@ -1,5 +1,5 @@
 ## Task Planner
-https://jwd-activity.github.io/jwd-js-assessment/
+https://jwd-projects.github.io/todo-list/
 
 ## Technologies used
 ![Generic badge](https://img.shields.io/badge/HTML-E96228.svg)
